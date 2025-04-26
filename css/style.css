@@ -328,22 +328,39 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.product-detail-image:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .product-detail-image img {
     max-height: 400px;
     max-width: 100%;
     object-fit: contain;
+    transform: scale(0.95);
+    transition: transform 0.5s ease;
+}
+
+.product-detail-image:hover img {
+    transform: scale(1);
 }
 
 .product-detail-info {
     padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
 }
 
 .product-detail-title {
     font-size: 1.8rem;
     font-weight: 600;
     margin-bottom: 10px;
+    color: var(--dark-color);
 }
 
 .product-detail-category {
@@ -351,6 +368,10 @@ a {
     color: var(--gray-color);
     text-transform: uppercase;
     margin-bottom: 15px;
+    display: inline-block;
+    background-color: #f8f9fa;
+    padding: 4px 10px;
+    border-radius: 4px;
 }
 
 .product-detail-price {
@@ -358,6 +379,9 @@ a {
     font-weight: 700;
     font-size: 1.8rem;
     margin: 15px 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .product-detail-price .regular-price {
@@ -383,11 +407,58 @@ a {
 }
 
 .product-detail-description {
-    margin-top: 30px;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.product-detail-features {
+    background-color: #f9f9f9;
+    border-left: 3px solid var(--primary-color);
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.product-detail-features ul {
+    padding-left: 20px;
+}
+
+.product-detail-features li {
+    margin-bottom: 8px;
+    position: relative;
 }
 
 .product-detail-tab-nav {
     margin-top: 40px;
+}
+
+.product-detail-tab-nav .nav-link {
+    font-weight: 500;
+    color: var(--dark-color);
+}
+
+.product-detail-tab-nav .nav-link.active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.tab-content {
+    background-color: white;
+}
+
+.reviews-summary {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#write-review-btn {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+#write-review-btn:hover {
+    background-color: #009b91;
+    border-color: #009b91;
 }
 
 /* Shopping Cart */

@@ -147,6 +147,59 @@
             </div>
         </div>
     </section>
+    
+    <script>
+        // Initialize Recently Viewed section
+        function displayRecentlyViewed() {
+            const recentlyViewedContainer = document.getElementById('recently-viewed-container');
+            if (!recentlyViewedContainer) return;
+            
+            let recentlyViewed = JSON.parse(localStorage.getItem('funcMedRecentlyViewed') || '[]');
+            
+            // Filter out current product
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentProductId = parseInt(urlParams.get('id'));
+            recentlyViewed = recentlyViewed.filter(p => p.id !== currentProductId);
+            
+            if (recentlyViewed.length === 0) {
+                recentlyViewedContainer.innerHTML = '<div class="col-12 text-center text-muted"><p>No recently viewed products</p></div>';
+                return;
+            }
+            
+            let html = '';
+            
+            recentlyViewed.forEach(product => {
+                html += `
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="product-card">
+                            <a href="product-detail.html?id=${product.id}" class="text-decoration-none">
+                                <div class="product-image">
+                                    <img src="${product.image}" alt="${product.name}" class="img-fluid">
+                                </div>
+                            </a>
+                            <div class="product-body">
+                                <div class="product-category">${product.category}</div>
+                                <h3 class="product-title">
+                                    <a href="product-detail.html?id=${product.id}" class="text-decoration-none text-dark">${product.name}</a>
+                                </h3>
+                                <div class="product-price">
+                                    $${product.price.toFixed(2)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            recentlyViewedContainer.innerHTML = html;
+        }
+        
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Display recently viewed products after a slight delay to ensure product is saved
+            setTimeout(displayRecentlyViewed, 500);
+        });
+    </script>
 
     <!-- Newsletter -->
     <section class="bg-primary text-white py-5">

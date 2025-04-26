@@ -89,17 +89,23 @@ function searchProducts(keyword) {
 /**
  * Create HTML for product card
  * @param {Object} product - Product object
+ * @param {boolean} isInProductPage - Whether this card is displayed inside a product page
  * @returns {string} HTML string for product card
  */
-function createProductCard(product) {
+function createProductCard(product, isInProductPage = false) {
     const discountBadge = product.discount ? 
         `<div class="discount-badge">-${product.discount}%</div>` : '';
+    
+    // Determine the correct path to product detail page based on context
+    const productDetailPath = isInProductPage ? 
+        `product-detail.html?id=${product.id}` : 
+        `pages/product-detail.html?id=${product.id}`;
     
     return `
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="product-card">
                 ${discountBadge}
-                <a href="pages/product-detail.html?id=${product.id}" class="text-decoration-none">
+                <a href="${productDetailPath}" class="text-decoration-none">
                     <div class="product-image">
                         <img src="${product.image}" alt="${product.name}" class="img-fluid">
                     </div>
@@ -107,7 +113,7 @@ function createProductCard(product) {
                 <div class="product-body">
                     <div class="product-category">${product.category}</div>
                     <h3 class="product-title">
-                        <a href="pages/product-detail.html?id=${product.id}" class="text-decoration-none text-dark">${product.name}</a>
+                        <a href="${productDetailPath}" class="text-decoration-none text-dark">${product.name}</a>
                     </h3>
                     <div class="product-rating">
                         ${createRatingStars(product.rating)}
@@ -121,7 +127,7 @@ function createProductCard(product) {
                         <button class="btn-add-to-cart" onclick="addToCart(${product.id}, 1, event)">
                             <i class="fas fa-shopping-cart me-1"></i> Add to Cart
                         </button>
-                        <a href="pages/product-detail.html?id=${product.id}" class="btn-view-product">
+                        <a href="${productDetailPath}" class="btn-view-product">
                             <i class="fas fa-eye"></i>
                         </a>
                     </div>
@@ -375,7 +381,7 @@ function displayRelatedProducts(productId, containerId, limit = 4) {
     let html = '<h3 class="mb-4">Related Products</h3><div class="row">';
     
     relatedProducts.forEach(product => {
-        html += createProductCard(product);
+        html += createProductCard(product, true); // true indicates we're in a product page
     });
     
     html += '</div>';
