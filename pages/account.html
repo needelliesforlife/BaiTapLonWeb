@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - FuncMed</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Top Bar -->
+        <div class="top-bar bg-primary text-white py-2">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <span><i class="fas fa-phone-alt me-2"></i> Hotline: 1800-1234</span>
+                        <span class="ms-3"><i class="fas fa-envelope me-2"></i> Email: support@funcmed.com</span>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <div class="top-nav">
+                            <a href="login.html" class="text-white me-3"><i class="fas fa-user me-1"></i> Log In</a>
+                            <a href="register.html" class="text-white me-3"><i class="fas fa-user-plus me-1"></i> Register</a>
+                            <a href="account.html" class="text-white me-3 d-none" id="account-link"><i class="fas fa-user-circle me-1"></i> My Account</a>
+                            <a href="#" class="text-white d-none" id="logout-btn"><i class="fas fa-sign-out-alt me-1"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">
+                    <h1 class="m-0 text-primary">FuncMed</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Search Form -->
+                <div class="search-container mx-auto d-none d-lg-block">
+                    <form class="d-flex">
+                        <input class="form-control me-2 search-input" type="search" placeholder="Search for functional medicine..." id="search-input">
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <!-- Cart Icon -->
+                <div class="cart-icon ms-auto me-2">
+                    <a href="cart.html" class="text-dark position-relative">
+                        <i class="fas fa-shopping-cart fa-lg"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="category.html?category=vitamins">Vitamins & Minerals</a></li>
+                                <li><a class="dropdown-item" href="category.html?category=probiotics">Probiotics</a></li>
+                                <li><a class="dropdown-item" href="category.html?category=herbs">Herbal Supplements</a></li>
+                                <li><a class="dropdown-item" href="category.html?category=oils">Essential Oils</a></li>
+                                <li><a class="dropdown-item" href="category.html?category=proteins">Protein Supplements</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html#bestsellers">Best Sellers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html#new-arrivals">New Arrivals</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html#about-us">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Search (shown only on small screens) -->
+    <div class="container d-block d-lg-none mt-3 mb-3">
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search for functional medicine..." id="mobile-search-input">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="bg-light py-2">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Account Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Account Sidebar -->
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <div class="account-sidebar">
+                        <div class="text-center mb-4">
+                            <div class="avatar-placeholder mb-3">
+                                <i class="fas fa-user-circle fa-5x text-primary"></i>
+                            </div>
+                            <h4 id="account-name">Loading...</h4>
+                            <p class="text-muted" id="account-email">Loading...</p>
+                            <p class="small text-muted">Member since <span id="account-date">Loading...</span></p>
+                        </div>
+                        
+                        <ul class="account-menu">
+                            <li class="account-menu-item">
+                                <a href="#" class="account-menu-link active" data-target="dashboard">
+                                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                                </a>
+                            </li>
+                            <li class="account-menu-item">
+                                <a href="#" class="account-menu-link" data-target="orders">
+                                    <i class="fas fa-shopping-bag me-2"></i> My Orders
+                                </a>
+                            </li>
+                            <li class="account-menu-item">
+                                <a href="#" class="account-menu-link" data-target="profile">
+                                    <i class="fas fa-user me-2"></i> Edit Profile
+                                </a>
+                            </li>
+                            <li class="account-menu-item">
+                                <a href="#" class="account-menu-link" data-target="addresses">
+                                    <i class="fas fa-map-marker-alt me-2"></i> Addresses
+                                </a>
+                            </li>
+                            <li class="account-menu-item">
+                                <a href="#" class="account-menu-link" data-target="change-password">
+                                    <i class="fas fa-lock me-2"></i> Change Password
+                                </a>
+                            </li>
+                            <li class="account-menu-item">
+                                <a href="#" class="account-menu-link" data-target="wishlist">
+                                    <i class="fas fa-heart me-2"></i> My Wishlist
+                                </a>
+                            </li>
+                            <li class="account-menu-item">
+                                <a href="#" id="account-logout" class="account-menu-link text-danger">
+                                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Account Content -->
+                <div class="col-lg-9">
+                    <div class="account-content">
+                        <!-- Dashboard Section -->
+                        <div id="dashboard-section" class="account-section active">
+                            <h2 class="account-title">Dashboard</h2>
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <div class="card text-center h-100">
+                                        <div class="card-body">
+                                            <i class="fas fa-shopping-bag fa-3x text-primary mb-3"></i>
+                                            <h5>Orders</h5>
+                                            <p class="text-muted">Track your recent orders</p>
+                                            <a href="#" class="btn btn-outline-primary btn-sm" data-click="orders">View Orders</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card text-center h-100">
+                                        <div class="card-body">
+                                            <i class="fas fa-user fa-3x text-primary mb-3"></i>
+                                            <h5>Profile</h5>
+                                            <p class="text-muted">Update your personal information</p>
+                                            <a href="#" class="btn btn-outline-primary btn-sm" data-click="profile">Edit Profile</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card text-center h-100">
+                                        <div class="card-body">
+                                            <i class="fas fa-heart fa-3x text-primary mb-3"></i>
+                                            <h5>Wishlist</h5>
+                                            <p class="text-muted">View your saved products</p>
+                                            <a href="#" class="btn btn-outline-primary btn-sm" data-click="wishlist">View Wishlist</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-5">
+                                <h4>Recent Orders</h4>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Order #</th>
+                                                <th>Date</th>
+                                                <th>Items</th>
+                                                <th>Total</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recent-orders-table">
+                                            <tr>
+                                                <td colspan="6" class="text-center">No orders yet</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Orders Section -->
+                        <div id="orders-section" class="account-section">
+                            <h2 class="account-title">My Orders</h2>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Order #</th>
+                                            <th>Date</th>
+                                            <th>Items</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="orders-table">
+                                        <tr>
+                                            <td colspan="6" class="text-center">No orders yet</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Profile Section -->
+                        <div id="profile-section" class="account-section">
+                            <h2 class="account-title">Edit Profile</h2>
+                            <div id="profile-alert-container"></div>
+                            <form id="profile-form" class="needs-validation" novalidate>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="profile-first-name" class="form-label">First Name*</label>
+                                        <input type="text" class="form-control" id="profile-first-name" required>
+                                        <div class="invalid-feedback">
+                                            Please provide your first name.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="profile-last-name" class="form-label">Last Name*</label>
+                                        <input type="text" class="form-control" id="profile-last-name" required>
+                                        <div class="invalid-feedback">
+                                            Please provide your last name.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="profile-email" class="form-label">Email Address*</label>
+                                        <input type="email" class="form-control" id="profile-email" readonly>
+                                        <div class="form-text">Email cannot be changed.</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="profile-phone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="profile-phone">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="profile-street" class="form-label">Street Address</label>
+                                        <input type="text" class="form-control" id="profile-street">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="profile-city" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="profile-city">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="profile-state" class="form-label">State/Province</label>
+                                        <input type="text" class="form-control" id="profile-state">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="profile-zip" class="form-label">ZIP Code</label>
+                                        <input type="text" class="form-control" id="profile-zip">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="profile-country" class="form-label">Country</label>
+                                        <select class="form-select" id="profile-country">
+                                            <option value="">Select a country</option>
+                                            <option value="US">United States</option>
+                                            <option value="CA">Canada</option>
+                                            <option value="UK">United Kingdom</option>
+                                            <option value="AU">Australia</option>
+                                            <option value="DE">Germany</option>
+                                            <option value="FR">France</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-4">Save Changes</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Addresses Section -->
+                        <div id="addresses-section" class="account-section">
+                            <h2 class="account-title">My Addresses</h2>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="card h-100">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <span>Default Shipping Address</span>
+                                            <div>
+                                                <a href="#" class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body" id="shipping-address-display">
+                                            <p class="text-muted">No shipping address saved yet.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card h-100">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <span>Default Billing Address</span>
+                                            <div>
+                                                <a href="#" class="btn btn-sm btn-outline-primary me-1"><i class="fas fa-edit"></i></a>
+                                                <a href="#" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body" id="billing-address-display">
+                                            <p class="text-muted">No billing address saved yet.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button class="btn btn-primary" id="add-address-btn">Add New Address</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Change Password Section -->
+                        <div id="change-password-section" class="account-section">
+                            <h2 class="account-title">Change Password</h2>
+                            <div id="password-alert-container"></div>
+                            <form id="password-form" class="needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="current-password" class="form-label">Current Password*</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="current-password" required>
+                                        <button class="btn btn-outline-secondary toggle-password" type="button">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please enter your current password.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="new-password" class="form-label">New Password*</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="new-password" required>
+                                        <button class="btn btn-outline-secondary toggle-password" type="button">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please enter a new password.
+                                    </div>
+                                    <div class="form-text">
+                                        Password must be at least 8 characters long and include letters and numbers.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirm-password" class="form-label">Confirm New Password*</label>
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" id="confirm-password" required>
+                                        <button class="btn btn-outline-secondary toggle-password" type="button">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please confirm your new password.
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Change Password</button>
+                            </form>
+                        </div>
+                        
+                        <!-- Wishlist Section -->
+                        <div id="wishlist-section" class="account-section">
+                            <h2 class="account-title">My Wishlist</h2>
+                            <div class="row g-4" id="wishlist-container">
+                                <div class="col-12 text-center">
+                                    <div class="py-5">
+                                        <i class="fas fa-heart fa-4x text-muted mb-3"></i>
+                                        <h4>Your wishlist is empty</h4>
+                                        <p>Add products to your wishlist by clicking the heart icon on product pages.</p>
+                                        <a href="../index.html" class="btn btn-primary mt-2">Browse Products</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="bg-primary text-white py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get exclusive offers, new product announcements, and health tips straight to your inbox.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group mt-3">
+                            <input type="email" class="form-control" placeholder="Your Email Address" required>
+                            <button class="btn btn-light" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5>FuncMed</h5>
+                    <p>Your trusted source for premium functional medicine supplements and natural health products.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="../index.html" class="text-white">Home</a></li>
+                        <li><a href="../index.html#featured-products" class="text-white">Products</a></li>
+                        <li><a href="../index.html#about-us" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Blog</a></li>
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Categories</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="category.html?category=vitamins" class="text-white">Vitamins & Minerals</a></li>
+                        <li><a href="category.html?category=probiotics" class="text-white">Probiotics</a></li>
+                        <li><a href="category.html?category=herbs" class="text-white">Herbal Supplements</a></li>
+                        <li><a href="category.html?category=oils" class="text-white">Essential Oils</a></li>
+                        <li><a href="category.html?category=proteins" class="text-white">Protein Supplements</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Contact Us</h5>
+                    <address>
+                        <p><i class="fas fa-map-marker-alt me-2"></i> 123 Health Street, Wellness City</p>
+                        <p><i class="fas fa-phone-alt me-2"></i> +1 (800) 123-4567</p>
+                        <p><i class="fas fa-envelope me-2"></i> support@funcmed.com</p>
+                    </address>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 FuncMed. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">
+                        <a href="#" class="text-white me-3">Privacy Policy</a>
+                        <a href="#" class="text-white me-3">Terms & Conditions</a>
+                        <a href="#" class="text-white">FAQ</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Scripts -->
+    <script src="../js/productData.js"></script>
+    <script src="../js/products.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const currentUser = getCurrentUser();
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Toggle password visibility for all password fields
+            const toggleButtons = document.querySelectorAll('.toggle-password');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const passwordInput = this.previousElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        passwordInput.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+            
+            // Handle account menu navigation
+            const menuLinks = document.querySelectorAll('.account-menu-link');
+            const accountSections = document.querySelectorAll('.account-section');
+            
+            menuLinks.forEach(link => {
+                if (link.id !== 'account-logout') {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Remove active class from all links and sections
+                        menuLinks.forEach(l => l.classList.remove('active'));
+                        accountSections.forEach(s => s.classList.remove('active'));
+                        
+                        // Add active class to clicked link and corresponding section
+                        this.classList.add('active');
+                        const targetSection = document.getElementById(`${this.dataset.target}-section`);
+                        if (targetSection) {
+                            targetSection.classList.add('active');
+                        }
+                    });
+                }
+            });
+            
+            // Handle dashboard card links
+            const dashboardLinks = document.querySelectorAll('[data-click]');
+            dashboardLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetSection = this.dataset.click;
+                    const menuLink = document.querySelector(`.account-menu-link[data-target="${targetSection}"]`);
+                    
+                    if (menuLink) {
+                        menuLink.click();
+                    }
+                });
+            });
+            
+            // Handle logout
+            document.getElementById('account-logout').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (confirm('Are you sure you want to logout?')) {
+                    logoutUser();
+                    window.location.href = '../index.html';
+                }
+            });
+            
+            // Update shipping address display if available
+            function updateAddressDisplay() {
+                const shippingAddressDisplay = document.getElementById('shipping-address-display');
+                const billingAddressDisplay = document.getElementById('billing-address-display');
+                
+                if (currentUser.address && currentUser.address.street) {
+                    const addressHtml = `
+                        <p><strong>${currentUser.firstName} ${currentUser.lastName}</strong></p>
+                        <p>${currentUser.address.street}</p>
+                        <p>${currentUser.address.city}, ${currentUser.address.state} ${currentUser.address.zipCode}</p>
+                        <p>${currentUser.address.country}</p>
+                        <p>${currentUser.phone}</p>
+                    `;
+                    
+                    shippingAddressDisplay.innerHTML = addressHtml;
+                    billingAddressDisplay.innerHTML = addressHtml;
+                }
+            }
+            
+            // Call the function to update address display
+            updateAddressDisplay();
+            
+            // Add event listener for address button
+            document.getElementById('add-address-btn').addEventListener('click', function() {
+                // This would typically open a modal or navigate to an address form
+                // For now, we'll just redirect to the profile page
+                document.querySelector('.account-menu-link[data-target="profile"]').click();
+            });
+        });
+    </script>
+</body>
+</html>

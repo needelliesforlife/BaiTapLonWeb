@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - FuncMed</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Top Bar -->
+        <div class="top-bar bg-primary text-white py-2">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <span><i class="fas fa-phone-alt me-2"></i> Hotline: 1800-1234</span>
+                        <span class="ms-3"><i class="fas fa-envelope me-2"></i> Email: support@funcmed.com</span>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <div class="top-nav">
+                            <a href="login.html" class="text-white me-3"><i class="fas fa-user me-1"></i> Log In</a>
+                            <a href="register.html" class="text-white me-3"><i class="fas fa-user-plus me-1"></i> Register</a>
+                            <a href="account.html" class="text-white me-3 d-none" id="account-link"><i class="fas fa-user-circle me-1"></i> My Account</a>
+                            <a href="#" class="text-white d-none" id="logout-btn"><i class="fas fa-sign-out-alt me-1"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">
+                    <h1 class="m-0 text-primary">FuncMed</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Search Form -->
+                <div class="search-container mx-auto d-none d-lg-block">
+                    <form class="d-flex">
+                        <input class="form-control me-2 search-input" type="search" placeholder="Search for functional medicine..." id="search-input">
+                        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+
+                <!-- Cart Icon -->
+                <div class="cart-icon ms-auto me-2">
+                    <a href="cart.html" class="text-dark position-relative">
+                        <i class="fas fa-shopping-cart fa-lg"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="category.html?category=vitamins">Vitamins & Minerals</a></li>
+                                <li><a class="dropdown-item" href="category.html?category=probiotics">Probiotics</a></li>
+                                <li><a class="dropdown-item" href="category.html?category=herbs">Herbal Supplements</a></li>
+                                <li><a class="dropdown-item" href="category.html?category=oils">Essential Oils</a></li>
+                                <li><a class="dropdown-item" href="category.html?category=proteins">Protein Supplements</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html#bestsellers">Best Sellers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html#new-arrivals">New Arrivals</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html#about-us">About Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Search (shown only on small screens) -->
+    <div class="container d-block d-lg-none mt-3 mb-3">
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search for functional medicine..." id="mobile-search-input">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="bg-light py-2">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Search Results</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Search Results Banner -->
+    <div class="search-banner py-4 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="mb-2">Search Results</h1>
+                    <p class="lead mb-0">Showing results for: "<span id="search-query-display">...</span>"</p>
+                </div>
+                <div class="col-md-4 text-end d-none d-md-block">
+                    <div class="text-primary">
+                        <i class="fas fa-search fa-4x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Results Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Filters Sidebar -->
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Filters</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Category Filter -->
+                            <h6 class="filter-title">Categories</h6>
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input category-filter" type="checkbox" id="category-all" value="all" checked>
+                                    <label class="form-check-label" for="category-all">
+                                        All Categories
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input category-filter" type="checkbox" id="category-vitamins" value="vitamins">
+                                    <label class="form-check-label" for="category-vitamins">
+                                        Vitamins & Minerals
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input category-filter" type="checkbox" id="category-probiotics" value="probiotics">
+                                    <label class="form-check-label" for="category-probiotics">
+                                        Probiotics
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input category-filter" type="checkbox" id="category-herbs" value="herbs">
+                                    <label class="form-check-label" for="category-herbs">
+                                        Herbal Supplements
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input category-filter" type="checkbox" id="category-oils" value="oils">
+                                    <label class="form-check-label" for="category-oils">
+                                        Essential Oils
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input category-filter" type="checkbox" id="category-proteins" value="proteins">
+                                    <label class="form-check-label" for="category-proteins">
+                                        Protein Supplements
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <!-- Price Filter -->
+                            <h6 class="filter-title">Price Range</h6>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>$0</span>
+                                    <span>$100</span>
+                                </div>
+                                <input type="range" class="form-range" min="0" max="100" step="5" id="search-price-filter" value="100">
+                                <div class="mt-2 text-center">
+                                    <span>Up to $<span id="search-price-value">100</span></span>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <!-- Rating Filter -->
+                            <h6 class="filter-title">Minimum Rating</h6>
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input search-rating-filter" type="radio" name="search-rating" id="search-rating-any" value="0" checked>
+                                    <label class="form-check-label" for="search-rating-any">
+                                        Any rating
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input search-rating-filter" type="radio" name="search-rating" id="search-rating-4" value="4">
+                                    <label class="form-check-label" for="search-rating-4">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="far fa-star text-warning"></i>
+                                        & Up
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input search-rating-filter" type="radio" name="search-rating" id="search-rating-3" value="3">
+                                    <label class="form-check-label" for="search-rating-3">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="far fa-star text-warning"></i>
+                                        <i class="far fa-star text-warning"></i>
+                                        & Up
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <button id="apply-search-filters" class="btn btn-primary w-100 mt-3">Apply Filters</button>
+                            <button id="clear-search-filters" class="btn btn-outline-secondary w-100 mt-2">Clear Filters</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Search Results Container -->
+                <div class="col-lg-9">
+                    <!-- Sort Options -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div id="search-results-count">Searching...</div>
+                        <div class="d-flex align-items-center">
+                            <label for="search-sort-options" class="me-2">Sort by:</label>
+                            <select class="form-select" id="search-sort-options">
+                                <option value="relevance">Relevance</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Best Rating</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Products Grid -->
+                    <div class="row g-4" id="search-results-container">
+                        <!-- Search results will be loaded dynamically here -->
+                        <div class="col-12 text-center py-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Searching products...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- You Might Also Like -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title mb-4">You Might Also Like</h2>
+            <div class="row g-4" id="recommended-products">
+                <!-- Recommended products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="bg-primary text-white py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get exclusive offers, new product announcements, and health tips straight to your inbox.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group mt-3">
+                            <input type="email" class="form-control" placeholder="Your Email Address" required>
+                            <button class="btn btn-light" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5>FuncMed</h5>
+                    <p>Your trusted source for premium functional medicine supplements and natural health products.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="../index.html" class="text-white">Home</a></li>
+                        <li><a href="../index.html#featured-products" class="text-white">Products</a></li>
+                        <li><a href="../index.html#about-us" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Blog</a></li>
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Categories</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="category.html?category=vitamins" class="text-white">Vitamins & Minerals</a></li>
+                        <li><a href="category.html?category=probiotics" class="text-white">Probiotics</a></li>
+                        <li><a href="category.html?category=herbs" class="text-white">Herbal Supplements</a></li>
+                        <li><a href="category.html?category=oils" class="text-white">Essential Oils</a></li>
+                        <li><a href="category.html?category=proteins" class="text-white">Protein Supplements</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Contact Us</h5>
+                    <address>
+                        <p><i class="fas fa-map-marker-alt me-2"></i> 123 Health Street, Wellness City</p>
+                        <p><i class="fas fa-phone-alt me-2"></i> +1 (800) 123-4567</p>
+                        <p><i class="fas fa-envelope me-2"></i> support@funcmed.com</p>
+                    </address>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2023 FuncMed. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">
+                        <a href="#" class="text-white me-3">Privacy Policy</a>
+                        <a href="#" class="text-white me-3">Terms & Conditions</a>
+                        <a href="#" class="text-white">FAQ</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Scripts -->
+    <script src="../js/productData.js"></script>
+    <script src="../js/products.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get search query from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            
+            if (!query) {
+                window.location.href = '../index.html';
+                return;
+            }
+            
+            // Set search query in display
+            const searchQueryDisplay = document.getElementById('search-query-display');
+            if (searchQueryDisplay) {
+                searchQueryDisplay.textContent = query;
+            }
+            
+            // Set search query in search box for easy refinement
+            const searchInputs = document.querySelectorAll('#search-input, #mobile-search-input');
+            searchInputs.forEach(input => {
+                if (input) {
+                    input.value = query;
+                }
+            });
+            
+            // Initialize filter variables
+            let maxPrice = 100;
+            let minRating = 0;
+            let selectedCategories = ['all'];
+            let sortBy = 'relevance';
+            
+            // Update price filter value display
+            const priceFilter = document.getElementById('search-price-filter');
+            const priceValue = document.getElementById('search-price-value');
+            
+            priceFilter.addEventListener('input', function() {
+                maxPrice = this.value;
+                priceValue.textContent = maxPrice;
+            });
+            
+            // Rating filter
+            const ratingFilters = document.querySelectorAll('.search-rating-filter');
+            ratingFilters.forEach(filter => {
+                filter.addEventListener('change', function() {
+                    if (this.checked) {
+                        minRating = parseFloat(this.value);
+                    }
+                });
+            });
+            
+            // Category filter
+            const categoryFilters = document.querySelectorAll('.category-filter');
+            categoryFilters.forEach(filter => {
+                filter.addEventListener('change', function() {
+                    // Get all selected categories
+                    const allCategoryFilter = document.getElementById('category-all');
+                    
+                    if (this.id === 'category-all' && this.checked) {
+                        // If "All Categories" is checked, uncheck others
+                        categoryFilters.forEach(f => {
+                            if (f.id !== 'category-all') {
+                                f.checked = false;
+                            }
+                        });
+                        selectedCategories = ['all'];
+                    } else if (this.id !== 'category-all') {
+                        // If a specific category is checked/unchecked
+                        if (this.checked) {
+                            // Uncheck "All Categories"
+                            allCategoryFilter.checked = false;
+                            
+                            // Add category to selected list if not already there
+                            if (!selectedCategories.includes(this.value) && selectedCategories.includes('all')) {
+                                selectedCategories = [this.value];
+                            } else if (!selectedCategories.includes(this.value)) {
+                                selectedCategories.push(this.value);
+                            }
+                        } else {
+                            // Remove category from selected list
+                            selectedCategories = selectedCategories.filter(cat => cat !== this.value);
+                            
+                            // If no categories selected, check "All Categories"
+                            if (selectedCategories.length === 0) {
+                                allCategoryFilter.checked = true;
+                                selectedCategories = ['all'];
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // Sort options
+            const sortOptions = document.getElementById('search-sort-options');
+            sortOptions.addEventListener('change', function() {
+                sortBy = this.value;
+                filterAndDisplaySearchResults();
+            });
+            
+            // Apply filters button
+            document.getElementById('apply-search-filters').addEventListener('click', function() {
+                filterAndDisplaySearchResults();
+            });
+            
+            // Clear filters button
+            document.getElementById('clear-search-filters').addEventListener('click', function() {
+                // Reset filter values
+                priceFilter.value = 100;
+                priceValue.textContent = '100';
+                maxPrice = 100;
+                
+                document.getElementById('search-rating-any').checked = true;
+                minRating = 0;
+                
+                document.getElementById('category-all').checked = true;
+                categoryFilters.forEach(f => {
+                    if (f.id !== 'category-all') {
+                        f.checked = false;
+                    }
+                });
+                selectedCategories = ['all'];
+                
+                sortOptions.value = 'relevance';
+                sortBy = 'relevance';
+                
+                filterAndDisplaySearchResults();
+            });
+            
+            // Search and filter products
+            function filterAndDisplaySearchResults() {
+                // Get all products
+                const allProducts = getProducts();
+                
+                // Initial search by query
+                let searchResults = searchProducts(query);
+                
+                // Apply category filter
+                if (!selectedCategories.includes('all')) {
+                    searchResults = searchResults.filter(product => selectedCategories.includes(product.category));
+                }
+                
+                // Apply price filter
+                searchResults = searchResults.filter(product => product.price <= maxPrice);
+                
+                // Apply rating filter
+                searchResults = searchResults.filter(product => product.rating >= minRating);
+                
+                // Apply sorting
+                switch(sortBy) {
+                    case 'price-low':
+                        searchResults.sort((a, b) => a.price - b.price);
+                        break;
+                    case 'price-high':
+                        searchResults.sort((a, b) => b.price - a.price);
+                        break;
+                    case 'rating':
+                        searchResults.sort((a, b) => b.rating - a.rating);
+                        break;
+                    case 'relevance':
+                    default:
+                        // For relevance, prioritize products with name matches
+                        searchResults.sort((a, b) => {
+                            const aNameMatch = a.name.toLowerCase().includes(query.toLowerCase());
+                            const bNameMatch = b.name.toLowerCase().includes(query.toLowerCase());
+                            
+                            if (aNameMatch && !bNameMatch) return -1;
+                            if (!aNameMatch && bNameMatch) return 1;
+                            
+                            // If both match or don't match by name, sort by rating
+                            return b.rating - a.rating;
+                        });
+                        break;
+                }
+                
+                // Update results count
+                const resultsCountElement = document.getElementById('search-results-count');
+                resultsCountElement.textContent = `Found ${searchResults.length} results`;
+                
+                // Display search results
+                const resultsContainer = document.getElementById('search-results-container');
+                
+                if (searchResults.length === 0) {
+                    resultsContainer.innerHTML = `
+                        <div class="col-12 text-center py-5">
+                            <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                            <h3>No products found</h3>
+                            <p>We couldn't find any products matching "${query}" with your selected filters.</p>
+                            <p>Try adjusting your filters or search for something else.</p>
+                            <a href="../index.html" class="btn btn-primary mt-2">Browse All Products</a>
+                        </div>
+                    `;
+                } else {
+                    let html = '';
+                    searchResults.forEach(product => {
+                        html += createProductCard(product);
+                    });
+                    resultsContainer.innerHTML = html;
+                }
+                
+                // Display recommended products
+                displayRecommendedProducts();
+            }
+            
+            // Display recommended/related products
+            function displayRecommendedProducts() {
+                const recommendedContainer = document.getElementById('recommended-products');
+                if (!recommendedContainer) return;
+                
+                // Get all products
+                const allProducts = getProducts();
+                
+                // Get bestsellers or featured products
+                const recommendations = allProducts
+                    .filter(product => product.isBestseller || product.isFeatured)
+                    .sort(() => 0.5 - Math.random()) // Shuffle
+                    .slice(0, 4); // Get 4 random products
+                
+                let html = '';
+                recommendations.forEach(product => {
+                    html += createProductCard(product);
+                });
+                
+                recommendedContainer.innerHTML = html;
+            }
+            
+            // Initialize search results
+            filterAndDisplaySearchResults();
+        });
+    </script>
+</body>
+</html>
