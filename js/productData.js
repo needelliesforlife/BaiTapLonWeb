@@ -13,7 +13,7 @@ const products = [
         regularPrice: 34.99,
         rating: 4.8,
         reviewCount: 156,
-        image: "https://via.placeholder.com/300?text=Vitamin+D3+K2",
+        image: "https://placehold.co/300x300/00b6aa/white?text=Vitamin+D3+K2",
         description: "High-potency Vitamin D3 (5000 IU) with K2 (MK-7) for optimal calcium absorption and bone health. Supports immune function and cardiovascular health.",
         features: [
             "Supports bone health and calcium absorption",
@@ -38,7 +38,7 @@ const products = [
         regularPrice: 45.99,
         rating: 4.9,
         reviewCount: 203,
-        image: "https://via.placeholder.com/300?text=Probiotic+50B",
+        image: "https://placehold.co/300x300/f0f8ff/00b6aa?text=Probiotic+50B",
         description: "High-potency probiotic with 50 billion CFU and 15 diverse strains to support gut health, immune function, and nutrient absorption. Delayed-release capsules for optimal delivery.",
         features: [
             "50 billion CFU per capsule",
@@ -63,7 +63,7 @@ const products = [
         regularPrice: 29.99,
         rating: 4.7,
         reviewCount: 189,
-        image: "https://via.placeholder.com/300?text=Turmeric+Curcumin",
+        image: "https://images.unsplash.com/photo-1615485500704-8e990f9027db?w=300&h=300&fit=crop&q=80",
         description: "High-potency turmeric extract with 95% curcuminoids and BioPerine (black pepper extract) for enhanced absorption. Supports joint health, inflammation response, and antioxidant protection.",
         features: [
             "1500mg of Turmeric Curcumin with 95% Curcuminoids",
@@ -213,7 +213,7 @@ const products = [
         regularPrice: 36.99,
         rating: 4.9,
         reviewCount: 147,
-        image: "https://via.placeholder.com/300?text=Liposomal+Vitamin+C",
+        image: "https://images.unsplash.com/photo-1606889464198-fcb18894cf50?w=300&h=300&fit=crop&q=80",
         description: "Advanced liposomal delivery system for maximum vitamin C absorption and bioavailability. Supports immune function, collagen production, and antioxidant protection.",
         features: [
             "1200mg of vitamin C per serving",
@@ -506,6 +506,37 @@ const products = [
         discount: 15
     }
 ];
+
+/**
+ * Updates product images with custom colors
+ * @param {string} backgroundColor - The background color in hex format
+ * @param {string} textColor - The text color in hex format
+ */
+function updateProductImages(backgroundColor = '00b6aa', textColor = 'white') {
+    // Remove the # if it's included
+    backgroundColor = backgroundColor.replace('#', '');
+    textColor = textColor.replace('#', '');
+    
+    // Update each product image
+    products.forEach(product => {
+        // Extract the text from the current image URL
+        let currentText = '';
+        if (product.image.includes('?text=')) {
+            currentText = product.image.split('?text=')[1];
+        } else {
+            // If no text parameter, use the product name
+            currentText = product.name.replace(/ /g, '+');
+        }
+        
+        // Create the new image URL
+        product.image = `https://placehold.co/300x300/${backgroundColor}/${textColor}?text=${currentText}`;
+    });
+    
+    // Save the updated products to localStorage
+    saveProductsToLocalStorage();
+    
+    return products;
+}
 
 /**
  * Saves product data to localStorage
