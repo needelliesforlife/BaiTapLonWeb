@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details - FuncMed</title>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <!-- Header (will be included via JavaScript) -->
+    <div id="header-placeholder"></div>
+
+    <!-- Product Detail Section -->
+    <section class="product-detail py-5">
+      <div class="container">
+        <div class="row">
+          <!-- Product Image -->
+          <div class="col-lg-5 mb-4">
+            <div class="product-detail-image">
+              <img
+                src=""
+                alt="Product"
+                id="product-image"
+                class="img-fluid rounded shadow-sm"
+              />
+            </div>
+          </div>
+
+          <!-- Product Info -->
+          <div class="col-lg-7">
+            <h1 id="product-name" class="fw-bold mb-2"></h1>
+            <div class="product-rating mb-2">
+              <div class="stars-container">
+                <!-- Stars will be added dynamically -->
+              </div>
+              <span id="review-count" class="ms-2 text-muted"></span>
+            </div>
+
+            <div class="product-price mb-3">
+              <span id="current-price" class="fw-bold fs-4 text-primary"></span>
+              <span
+                id="regular-price"
+                class="text-muted text-decoration-line-through ms-2"
+              ></span>
+              <span id="discount-badge" class="badge bg-danger ms-2"></span>
+            </div>
+
+            <div class="stock-status in-stock mb-3">In Stock</div>
+
+            <div
+              class="product-description mb-4"
+              id="product-description"
+            ></div>
+
+            <div class="key-benefits mb-4">
+              <h3>Key Benefits:</h3>
+              <ul id="product-features">
+                <!-- Features will be added dynamically -->
+              </ul>
+            </div>
+
+            <div class="product-actions mb-4">
+              <div class="quantity-selector d-flex align-items-center mb-3">
+                <button
+                  class="btn btn-outline-secondary"
+                  id="decrease-quantity"
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  id="quantity"
+                  class="form-control mx-2 text-center"
+                  value="1"
+                  min="1"
+                  style="width: 60px"
+                />
+                <button
+                  class="btn btn-outline-secondary"
+                  id="increase-quantity"
+                >
+                  +
+                </button>
+              </div>
+
+              <div class="d-flex flex-wrap gap-2">
+                <button
+                  class="btn btn-primary btn-add-to-cart"
+                  data-action="add-to-cart"
+                >
+                  <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
+                </button>
+                <button
+                  class="btn btn-outline-secondary btn-add-to-wishlist"
+                  data-action="add-to-wishlist"
+                >
+                  <i class="far fa-heart"></i> Thêm vào danh sách yêu thích
+                </button>
+              </div>
+            </div>
+
+            <div class="product-meta">
+              <p class="mb-1">
+                <span class="fw-medium">Category:</span>
+                <span id="product-category"></span>
+              </p>
+              <p class="mb-1">
+                <span class="fw-medium">Product ID:</span>
+                <span id="product-id"></span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Tabs -->
+        <div class="row mt-5">
+          <div class="col-12">
+            <ul
+              class="nav nav-tabs product-detail-tabs mb-4"
+              id="productTabs"
+              role="tablist"
+            >
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link active"
+                  id="description-tab"
+                  data-bs-toggle="tab"
+                  href="#description"
+                  role="tab"
+                  >Description</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="dosage-tab"
+                  data-bs-toggle="tab"
+                  href="#dosage"
+                  role="tab"
+                  >Dosage & Usage</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="ingredients-tab"
+                  data-bs-toggle="tab"
+                  href="#ingredients"
+                  role="tab"
+                  >Ingredients</a
+                >
+              </li>
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="reviews-tab"
+                  data-bs-toggle="tab"
+                  href="#reviews"
+                  role="tab"
+                  >Reviews</a
+                >
+              </li>
+            </ul>
+
+            <div
+              class="tab-content p-4 bg-white rounded shadow-sm"
+              id="productTabsContent"
+            >
+              <div
+                class="tab-pane fade show active"
+                id="description"
+                role="tabpanel"
+              >
+                <p id="full-description"></p>
+              </div>
+              <div class="tab-pane fade" id="dosage" role="tabpanel">
+                <p id="dosage-info"></p>
+              </div>
+              <div class="tab-pane fade" id="ingredients" role="tabpanel">
+                <p id="ingredients-info"></p>
+              </div>
+              <div class="tab-pane fade" id="reviews" role="tabpanel">
+                <div id="reviews-container">
+                  <p>No reviews for this product yet.</p>
+                </div>
+                <div class="add-review mt-4">
+                  <h4>Add a Review</h4>
+                  <form id="review-form">
+                    <div class="mb-3">
+                      <label for="review-name" class="form-label"
+                        >Your Name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="review-name"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="review-email" class="form-label">Email</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="review-email"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Rating</label>
+                      <div class="rating-input">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="review-text" class="form-label"
+                        >Your Review</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="review-text"
+                        rows="4"
+                        required
+                      ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Submit Review
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-products py-5 bg-light">
+      <div class="container">
+        <h2 class="section-title mb-4">Related Products</h2>
+        <div class="row g-4" id="related-products-container">
+          <!-- Related products will be loaded dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (will be included via JavaScript) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Scripts -->
+    <script src="../js/productData.js"></script>
+    <script src="../js/products.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+      // Load header and footer
+      fetch("../includes/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header-placeholder").innerHTML = data;
+          // Initialize header components after loading
+          initSearchForm();
+        });
+
+      fetch("../includes/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+        });
+
+      // Product detail page functionality will be initialized through main.js
+    </script>
+  </body>
+</html>

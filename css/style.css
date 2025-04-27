@@ -581,7 +581,8 @@ a {
     transition: all 0.3s ease;
 }
 
-.account-menu-link:hover, .account-menu-link.active {
+.account-menu-link:hover,
+.account-menu-link.active {
     color: var(--primary-color);
     padding-left: 5px;
 }
@@ -604,11 +605,11 @@ a {
     .search-container {
         margin: 15px 0;
     }
-    
+
     .product-detail-actions {
         flex-direction: column;
     }
-    
+
     .product-detail-actions .btn {
         width: 100%;
     }
@@ -618,15 +619,16 @@ a {
     .cart-item {
         text-align: center;
     }
-    
+
     .cart-item-image {
         margin: 0 auto 15px;
     }
-    
-    .cart-item-price, .cart-item-total {
+
+    .cart-item-price,
+    .cart-item-total {
         margin: 10px 0;
     }
-    
+
     .cart-item-actions {
         margin-top: 15px;
     }
@@ -636,20 +638,76 @@ a {
     .hero-banner {
         min-height: 300px;
     }
-    
+
     .product-card {
         margin-bottom: 20px;
     }
-    
+
     .section-title {
         font-size: 1.5rem;
     }
-    
+
     .product-detail-title {
         font-size: 1.5rem;
     }
-    
+
     .product-detail-price {
         font-size: 1.5rem;
     }
+}
+
+/* Stock Status Labels */
+.stock-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.in-stock {
+    background-color: #28a745;
+    color: white;
+}
+
+.out-of-stock {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Button translations */
+.btn-add-to-cart,
+.btn-add-to-wishlist {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Product detail tabs */
+.product-detail-tabs .nav-link {
+    font-weight: 500;
+    color: #495057;
+}
+
+.product-detail-tabs .nav-link.active {
+    font-weight: 600;
+    color: #0d6efd;
+    border-bottom: 2px solid #0d6efd;
+}
+
+/* Key benefits section */
+.key-benefits h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.key-benefits ul {
+    padding-left: 1.5rem;
+}
+
+.key-benefits li {
+    margin-bottom: 0.5rem;
 }

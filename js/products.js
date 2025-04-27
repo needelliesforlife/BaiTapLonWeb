@@ -8,7 +8,7 @@
  * @returns {Array} Array of product objects
  */
 function getProducts() {
-    return getProductsFromLocalStorage();
+  return getProductsFromLocalStorage();
 }
 
 /**
@@ -17,8 +17,8 @@ function getProducts() {
  * @returns {Object|null} Product object or null if not found
  */
 function getProductById(id) {
-    const products = getProducts();
-    return products.find(product => product.id === parseInt(id)) || null;
+  const products = getProducts();
+  return products.find((product) => product.id === parseInt(id)) || null;
 }
 
 /**
@@ -27,8 +27,8 @@ function getProductById(id) {
  * @returns {Array} Filtered array of products
  */
 function getProductsByCategory(category) {
-    const products = getProducts();
-    return products.filter(product => product.category === category);
+  const products = getProducts();
+  return products.filter((product) => product.category === category);
 }
 
 /**
@@ -37,11 +37,11 @@ function getProductsByCategory(category) {
  * @returns {Array} Array of featured products
  */
 function getFeaturedProducts(limit = 8) {
-    const products = getProducts();
-    return products
-        .filter(product => product.isFeatured)
-        .sort((a, b) => b.rating - a.rating)
-        .slice(0, limit);
+  const products = getProducts();
+  return products
+    .filter((product) => product.isFeatured)
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, limit);
 }
 
 /**
@@ -50,11 +50,11 @@ function getFeaturedProducts(limit = 8) {
  * @returns {Array} Array of bestselling products
  */
 function getBestsellerProducts(limit = 8) {
-    const products = getProducts();
-    return products
-        .filter(product => product.isBestseller)
-        .sort((a, b) => b.rating - a.rating)
-        .slice(0, limit);
+  const products = getProducts();
+  return products
+    .filter((product) => product.isBestseller)
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, limit);
 }
 
 /**
@@ -63,11 +63,11 @@ function getBestsellerProducts(limit = 8) {
  * @returns {Array} Array of new products
  */
 function getNewProducts(limit = 8) {
-    const products = getProducts();
-    return products
-        .filter(product => product.isNew)
-        .sort((a, b) => b.rating - a.rating)
-        .slice(0, limit);
+  const products = getProducts();
+  return products
+    .filter((product) => product.isNew)
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, limit);
 }
 
 /**
@@ -76,14 +76,15 @@ function getNewProducts(limit = 8) {
  * @returns {Array} Array of matching products
  */
 function searchProducts(keyword) {
-    const products = getProducts();
-    const searchTerm = keyword.toLowerCase().trim();
-    
-    return products.filter(product => 
-        product.name.toLowerCase().includes(searchTerm) ||
-        product.description.toLowerCase().includes(searchTerm) ||
-        product.category.toLowerCase().includes(searchTerm)
-    );
+  const products = getProducts();
+  const searchTerm = keyword.toLowerCase().trim();
+
+  return products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchTerm) ||
+      product.description.toLowerCase().includes(searchTerm) ||
+      product.category.toLowerCase().includes(searchTerm)
+  );
 }
 
 /**
@@ -93,39 +94,63 @@ function searchProducts(keyword) {
  * @returns {string} HTML string for product card
  */
 function createProductCard(product, isInProductPage = false) {
-    const discountBadge = product.discount ? 
-        `<div class="discount-badge">-${product.discount}%</div>` : '';
-    
-    // Determine the correct path to product detail page based on context
-    const productDetailPath = isInProductPage ? 
-        `product-detail.html?id=${product.id}` : 
-        `pages/product-detail.html?id=${product.id}`;
-    
-    return `
+  const discountBadge = product.discount
+    ? `<div class="discount-badge">-${product.discount}%</div>`
+    : "";
+
+  // Determine the correct path to product detail page based on context and current location
+  let productDetailPath;
+
+  // Check if we're in the pages directory by looking at the window location
+  const isInPagesDirectory = window.location.pathname.includes("/pages/");
+
+  if (isInPagesDirectory) {
+    // If we're in the pages directory (category or other page), use relative path
+    productDetailPath = `./product-detail.html?id=${product.id}`;
+  } else {
+    // If we're on the main page, use the full path
+    productDetailPath = `pages/product-detail.html?id=${product.id}`;
+  }
+
+  return `
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="product-card">
                 ${discountBadge}
                 <a href="${productDetailPath}" class="text-decoration-none">
                     <div class="product-image">
-                        <img src="${product.image}" alt="${product.name}" class="img-fluid">
+                        <img src="${product.image}" alt="${
+    product.name
+  }" class="img-fluid">
                     </div>
                 </a>
                 <div class="product-body">
                     <div class="product-category">${product.category}</div>
                     <h3 class="product-title">
-                        <a href="${productDetailPath}" class="text-decoration-none text-dark">${product.name}</a>
+                        <a href="${productDetailPath}" class="text-decoration-none text-dark">${
+    product.name
+  }</a>
                     </h3>
                     <div class="product-rating">
                         ${createRatingStars(product.rating)}
-                        <span class="rating-count">(${product.reviewCount})</span>
+                        <span class="rating-count">(${
+                          product.reviewCount
+                        })</span>
                     </div>
                     <div class="product-price">
                         $${product.price.toFixed(2)}
-                        ${product.regularPrice ? `<span class="regular-price">$${product.regularPrice.toFixed(2)}</span>` : ''}
+                        ${
+                          product.regularPrice
+                            ? `<span class="regular-price">$${product.regularPrice.toFixed(
+                                2
+                              )}</span>`
+                            : ""
+                        }
                     </div>
                     <div class="product-actions">
-                        <button class="btn-add-to-cart" onclick="addToCart(${product.id}, 1, event)">
-                            <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                        <button class="btn-add-to-cart" onclick="addToCart(${
+                          product.id
+                        }, 1, event)">
+                            <i class="fas fa-shopping-cart me-1"></i> Thêm vào giỏ hàng
                         </button>
                         <a href="${productDetailPath}" class="btn-view-product">
                             <i class="fas fa-eye"></i>
@@ -143,28 +168,28 @@ function createProductCard(product, isInProductPage = false) {
  * @returns {string} HTML for star rating
  */
 function createRatingStars(rating) {
-    const fullStars = Math.floor(rating);
-    const halfStar = rating % 1 >= 0.5;
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-    
-    let starsHtml = '';
-    
-    // Add full stars
-    for (let i = 0; i < fullStars; i++) {
-        starsHtml += '<i class="fas fa-star"></i>';
-    }
-    
-    // Add half star if needed
-    if (halfStar) {
-        starsHtml += '<i class="fas fa-star-half-alt"></i>';
-    }
-    
-    // Add empty stars
-    for (let i = 0; i < emptyStars; i++) {
-        starsHtml += '<i class="far fa-star"></i>';
-    }
-    
-    return starsHtml;
+  const fullStars = Math.floor(rating);
+  const halfStar = rating % 1 >= 0.5;
+  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+  let starsHtml = "";
+
+  // Add full stars
+  for (let i = 0; i < fullStars; i++) {
+    starsHtml += '<i class="fas fa-star"></i>';
+  }
+
+  // Add half star if needed
+  if (halfStar) {
+    starsHtml += '<i class="fas fa-star-half-alt"></i>';
+  }
+
+  // Add empty stars
+  for (let i = 0; i < emptyStars; i++) {
+    starsHtml += '<i class="far fa-star"></i>';
+  }
+
+  return starsHtml;
 }
 
 /**
@@ -173,20 +198,21 @@ function createRatingStars(rating) {
  * @param {string} containerId - ID of container element
  */
 function displayProducts(products, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    
-    let html = '';
-    
-    if (products.length === 0) {
-        html = '<div class="col-12 text-center py-5"><p>No products found.</p></div>';
-    } else {
-        products.forEach(product => {
-            html += createProductCard(product);
-        });
-    }
-    
-    container.innerHTML = html;
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  let html = "";
+
+  if (products.length === 0) {
+    html =
+      '<div class="col-12 text-center py-5"><p>No products found.</p></div>';
+  } else {
+    products.forEach((product) => {
+      html += createProductCard(product);
+    });
+  }
+
+  container.innerHTML = html;
 }
 
 /**
@@ -195,66 +221,91 @@ function displayProducts(products, containerId) {
  * @param {string} containerId - ID of container element
  */
 function displayProductDetail(productId, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    
-    const product = getProductById(productId);
-    
-    if (!product) {
-        container.innerHTML = '<div class="alert alert-danger">Product not found!</div>';
-        return;
-    }
-    
-    const discountBadge = product.discount ? 
-        `<div class="badge bg-danger">-${product.discount}%</div>` : '';
-    
-    const html = `
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const product = getProductById(productId);
+
+  if (!product) {
+    container.innerHTML =
+      '<div class="alert alert-danger">Product not found!</div>';
+    return;
+  }
+
+  const discountBadge = product.discount
+    ? `<div class="badge bg-danger">-${product.discount}%</div>`
+    : "";
+
+  const html = `
         <div class="row">
             <div class="col-lg-5">
                 <div class="product-detail-image">
-                    <img src="${product.image}" alt="${product.name}" class="img-fluid">
+                    <img src="${product.image}" alt="${
+    product.name
+  }" class="img-fluid">
                 </div>
             </div>
             <div class="col-lg-7">
                 <div class="product-detail-info">
                     <h1 class="product-detail-title">${product.name}</h1>
-                    <div class="product-detail-category">Category: ${product.category}</div>
+                    <div class="product-detail-category">Category: ${
+                      product.category
+                    }</div>
                     <div class="product-rating">
                         ${createRatingStars(product.rating)}
-                        <span class="rating-count">(${product.reviewCount} reviews)</span>
+                        <span class="rating-count">(${
+                          product.reviewCount
+                        } reviews)</span>
                     </div>
                     <div class="product-detail-price">
                         $${product.price.toFixed(2)}
-                        ${product.regularPrice ? `<span class="regular-price">$${product.regularPrice.toFixed(2)}</span>` : ''}
+                        ${
+                          product.regularPrice
+                            ? `<span class="regular-price">$${product.regularPrice.toFixed(
+                                2
+                              )}</span>`
+                            : ""
+                        }
                         ${discountBadge}
                     </div>
-                    <p class="product-detail-description">${product.description}</p>
+                    <p class="product-detail-description">${
+                      product.description
+                    }</p>
                     <div class="product-detail-features mb-4">
                         <h5>Key Benefits:</h5>
                         <ul>
-                            ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                            ${product.features
+                              .map((feature) => `<li>${feature}</li>`)
+                              .join("")}
                         </ul>
                     </div>
                     <div class="product-detail-stock mb-3">
-                        <span class="badge bg-${product.stock > 0 ? 'success' : 'danger'}">
-                            ${product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+                        <span class="badge bg-${
+                          product.stock > 0 ? "success" : "danger"
+                        }">
+                            ${product.stock > 0 ? "In Stock" : "Out of Stock"}
                         </span>
-                        ${product.stock > 0 && product.stock < 20 ? 
-                            `<span class="text-danger ms-2">Only ${product.stock} left!</span>` : ''}
+                        ${
+                          product.stock > 0 && product.stock < 20
+                            ? `<span class="text-danger ms-2">Only ${product.stock} left!</span>`
+                            : ""
+                        }
                     </div>
                     <div class="product-detail-quantity">
                         <div class="input-group" style="width: 130px;">
                             <button class="btn btn-outline-secondary" type="button" id="quantity-minus">-</button>
-                            <input type="number" class="form-control text-center" id="product-quantity" value="1" min="1" max="${product.stock}">
+                            <input type="number" class="form-control text-center" id="product-quantity" value="1" min="1" max="${
+                              product.stock
+                            }">
                             <button class="btn btn-outline-secondary" type="button" id="quantity-plus">+</button>
                         </div>
                     </div>
                     <div class="product-detail-actions">
                         <button class="btn btn-primary btn-lg" id="add-to-cart-btn">
-                            <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                            <i class="fas fa-shopping-cart me-2"></i> Thêm vào giỏ hàng
                         </button>
                         <button class="btn btn-outline-secondary btn-lg" id="add-to-wishlist-btn">
-                            <i class="far fa-heart me-2"></i> Add to Wishlist
+                            <i class="far fa-heart me-2"></i> Thêm vào danh sách yêu thích
                         </button>
                     </div>
                 </div>
@@ -281,7 +332,9 @@ function displayProductDetail(productId, containerId) {
                         <p>${product.description}</p>
                         <h5>Key Benefits:</h5>
                         <ul>
-                            ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                            ${product.features
+                              .map((feature) => `<li>${feature}</li>`)
+                              .join("")}
                         </ul>
                     </div>
                     <div class="tab-pane fade" id="dosage" role="tabpanel">
@@ -300,9 +353,15 @@ function displayProductDetail(productId, containerId) {
                         <div class="reviews-summary mb-4">
                             <div class="row align-items-center">
                                 <div class="col-md-3 text-center">
-                                    <div class="display-4 fw-bold">${product.rating.toFixed(1)}</div>
-                                    <div>${createRatingStars(product.rating)}</div>
-                                    <div class="mt-2">${product.reviewCount} reviews</div>
+                                    <div class="display-4 fw-bold">${product.rating.toFixed(
+                                      1
+                                    )}</div>
+                                    <div>${createRatingStars(
+                                      product.rating
+                                    )}</div>
+                                    <div class="mt-2">${
+                                      product.reviewCount
+                                    } reviews</div>
                                 </div>
                                 <div class="col-md-9">
                                     <p>Review data would be shown here in a real implementation.</p>
@@ -314,37 +373,51 @@ function displayProductDetail(productId, containerId) {
             </div>
         </div>
     `;
-    
-    container.innerHTML = html;
-    
-    // Add event listeners for the product detail page
-    document.getElementById('quantity-minus').addEventListener('click', function() {
-        const quantityInput = document.getElementById('product-quantity');
-        let value = parseInt(quantityInput.value);
-        if (value > 1) {
-            quantityInput.value = value - 1;
-        }
+
+  container.innerHTML = html;
+
+  // Add event listeners for the product detail page
+  document
+    .getElementById("quantity-minus")
+    .addEventListener("click", function () {
+      const quantityInput = document.getElementById("product-quantity");
+      let value = parseInt(quantityInput.value);
+      if (value > 1) {
+        quantityInput.value = value - 1;
+      }
     });
-    
-    document.getElementById('quantity-plus').addEventListener('click', function() {
-        const quantityInput = document.getElementById('product-quantity');
-        let value = parseInt(quantityInput.value);
-        if (value < product.stock) {
-            quantityInput.value = value + 1;
-        }
+
+  document
+    .getElementById("quantity-plus")
+    .addEventListener("click", function () {
+      const quantityInput = document.getElementById("product-quantity");
+      let value = parseInt(quantityInput.value);
+      if (value < product.stock) {
+        quantityInput.value = value + 1;
+      }
     });
-    
-    document.getElementById('add-to-cart-btn').addEventListener('click', function() {
-        const quantity = parseInt(document.getElementById('product-quantity').value);
-        addToCart(product.id, quantity);
+
+  document
+    .getElementById("add-to-cart-btn")
+    .addEventListener("click", function () {
+      const quantity = parseInt(
+        document.getElementById("product-quantity").value
+      );
+      addToCart(product.id, quantity);
     });
-    
-    document.getElementById('add-to-wishlist-btn').addEventListener('click', function() {
-        alert('Wishlist functionality would be implemented in a complete version.');
+
+  document
+    .getElementById("add-to-wishlist-btn")
+    .addEventListener("click", function () {
+      alert(
+        "Wishlist functionality would be implemented in a complete version."
+      );
     });
-    
-    document.getElementById('write-review-btn').addEventListener('click', function() {
-        alert('Review submission would be implemented in a complete version.');
+
+  document
+    .getElementById("write-review-btn")
+    .addEventListener("click", function () {
+      alert("Review submission would be implemented in a complete version.");
     });
 }
 
@@ -355,122 +428,131 @@ function displayProductDetail(productId, containerId) {
  * @param {number} limit - Maximum number of related products
  */
 function displayRelatedProducts(productId, containerId, limit = 4) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    
-    const currentProduct = getProductById(productId);
-    if (!currentProduct) return;
-    
-    const products = getProducts();
-    
-    // Get products in the same category, excluding current product
-    let relatedProducts = products
-        .filter(product => product.category === currentProduct.category && product.id !== productId)
-        .sort(() => 0.5 - Math.random()) // Shuffle array
-        .slice(0, limit);
-    
-    // If not enough products in the same category, add some bestsellers
-    if (relatedProducts.length < limit) {
-        const additionalProducts = products
-            .filter(product => product.isBestseller && product.id !== productId && !relatedProducts.some(p => p.id === product.id))
-            .slice(0, limit - relatedProducts.length);
-        
-        relatedProducts = [...relatedProducts, ...additionalProducts];
-    }
-    
-    let html = '<h3 class="mb-4">Related Products</h3><div class="row">';
-    
-    relatedProducts.forEach(product => {
-        html += createProductCard(product, true); // true indicates we're in a product page
-    });
-    
-    html += '</div>';
-    container.innerHTML = html;
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const currentProduct = getProductById(productId);
+  if (!currentProduct) return;
+
+  const products = getProducts();
+
+  // Get products in the same category, excluding current product
+  let relatedProducts = products
+    .filter(
+      (product) =>
+        product.category === currentProduct.category && product.id !== productId
+    )
+    .sort(() => 0.5 - Math.random()) // Shuffle array
+    .slice(0, limit);
+
+  // If not enough products in the same category, add some bestsellers
+  if (relatedProducts.length < limit) {
+    const additionalProducts = products
+      .filter(
+        (product) =>
+          product.isBestseller &&
+          product.id !== productId &&
+          !relatedProducts.some((p) => p.id === product.id)
+      )
+      .slice(0, limit - relatedProducts.length);
+
+    relatedProducts = [...relatedProducts, ...additionalProducts];
+  }
+
+  let html = '<h3 class="mb-4">Related Products</h3><div class="row">';
+
+  relatedProducts.forEach((product) => {
+    html += createProductCard(product, true); // true indicates we're in a product page
+  });
+
+  html += "</div>";
+  container.innerHTML = html;
 }
 
 /**
  * Initialize products on the home page
  */
 function initHomePageProducts() {
-    // Display featured products
-    displayProducts(getFeaturedProducts(8), 'featured-products-container');
-    
-    // Display bestseller products
-    displayProducts(getBestsellerProducts(4), 'bestseller-products-container');
-    
-    // Display new arrival products
-    displayProducts(getNewProducts(8), 'new-arrivals-container');
+  // Display featured products
+  displayProducts(getFeaturedProducts(8), "featured-products-container");
+
+  // Display bestseller products
+  displayProducts(getBestsellerProducts(4), "bestseller-products-container");
+
+  // Display new arrival products
+  displayProducts(getNewProducts(8), "new-arrivals-container");
 }
 
 /**
  * Initialize product detail page
  */
 function initProductDetailPage() {
-    // Get product ID from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = parseInt(urlParams.get('id'));
-    
-    if (!productId) {
-        document.getElementById('product-detail-container').innerHTML = 
-            '<div class="alert alert-danger">Product ID is missing!</div>';
-        return;
-    }
-    
-    // Display product details
-    displayProductDetail(productId, 'product-detail-container');
-    
-    // Display related products
-    displayRelatedProducts(productId, 'related-products-container', 4);
+  // Get product ID from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = parseInt(urlParams.get("id"));
+
+  if (!productId) {
+    document.getElementById("product-detail-container").innerHTML =
+      '<div class="alert alert-danger">Product ID is missing!</div>';
+    return;
+  }
+
+  // Display product details
+  displayProductDetail(productId, "product-detail-container");
+
+  // Display related products
+  displayRelatedProducts(productId, "related-products-container", 4);
 }
 
 /**
  * Initialize category page
  */
 function initCategoryPage() {
-    // Get category from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const category = urlParams.get('category');
-    
-    if (!category) {
-        document.getElementById('category-products-container').innerHTML = 
-            '<div class="alert alert-danger">Category is missing!</div>';
-        return;
-    }
-    
-    // Set category title
-    const categoryTitleElement = document.getElementById('category-title');
-    if (categoryTitleElement) {
-        categoryTitleElement.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-    }
-    
-    // Display category products
-    const categoryProducts = getProductsByCategory(category);
-    displayProducts(categoryProducts, 'category-products-container');
+  // Get category from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const category = urlParams.get("category");
+
+  if (!category) {
+    document.getElementById("category-products-container").innerHTML =
+      '<div class="alert alert-danger">Category is missing!</div>';
+    return;
+  }
+
+  // Set category title
+  const categoryTitleElement = document.getElementById("category-title");
+  if (categoryTitleElement) {
+    categoryTitleElement.textContent =
+      category.charAt(0).toUpperCase() + category.slice(1);
+  }
+
+  // Display category products
+  const categoryProducts = getProductsByCategory(category);
+  displayProducts(categoryProducts, "category-products-container");
 }
 
 /**
  * Initialize search results page
  */
 function initSearchResultsPage() {
-    // Get search query from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('q');
-    
-    if (!query) {
-        document.getElementById('search-results-container').innerHTML = 
-            '<div class="alert alert-danger">Search query is missing!</div>';
-        return;
-    }
-    
-    // Set search query in header
-    const searchQueryElement = document.getElementById('search-query-display');
-    if (searchQueryElement) {
-        searchQueryElement.textContent = query;
-    }
-    
-    // Display search results
-    const searchResults = searchProducts(query);
-    displayProducts(searchResults, 'search-results-container');
+  // Get search query from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get("q");
+
+  if (!query) {
+    document.getElementById("search-results-container").innerHTML =
+      '<div class="alert alert-danger">Search query is missing!</div>';
+    return;
+  }
+
+  // Set search query in header
+  const searchQueryElement = document.getElementById("search-query-display");
+  if (searchQueryElement) {
+    searchQueryElement.textContent = query;
+  }
+
+  // Display search results
+  const searchResults = searchProducts(query);
+  displayProducts(searchResults, "search-results-container");
 }
 
 /**
@@ -478,38 +560,46 @@ function initSearchResultsPage() {
  * @param {Event} event - Form submission event
  */
 function handleSearch(event) {
-    event.preventDefault();
-    
-    const searchInput = document.getElementById('search-input') || document.getElementById('mobile-search-input');
-    const query = searchInput.value.trim();
-    
-    if (query) {
-        window.location.href = `pages/search-results.html?q=${encodeURIComponent(query)}`;
-    }
+  event.preventDefault();
+
+  const searchInput =
+    document.getElementById("search-input") ||
+    document.getElementById("mobile-search-input");
+  const query = searchInput.value.trim();
+
+  if (query) {
+    // Check if we're already in the pages directory
+    const isInPagesDirectory = window.location.pathname.includes("/pages/");
+    const searchUrl = isInPagesDirectory
+      ? `./search-results.html?q=${encodeURIComponent(query)}`
+      : `pages/search-results.html?q=${encodeURIComponent(query)}`;
+
+    window.location.href = searchUrl;
+  }
 }
 
 // Add event listener for DOM content loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize search form
-    const searchForms = document.querySelectorAll('form');
-    searchForms.forEach(form => {
-        form.addEventListener('submit', handleSearch);
-    });
-    
-    // Initialize products based on current page
-    if (document.getElementById('featured-products-container')) {
-        initHomePageProducts();
-    }
-    
-    if (document.getElementById('product-detail-container')) {
-        initProductDetailPage();
-    }
-    
-    if (document.getElementById('category-products-container')) {
-        initCategoryPage();
-    }
-    
-    if (document.getElementById('search-results-container')) {
-        initSearchResultsPage();
-    }
+document.addEventListener("DOMContentLoaded", function () {
+  // Initialize search form
+  const searchForms = document.querySelectorAll("form");
+  searchForms.forEach((form) => {
+    form.addEventListener("submit", handleSearch);
+  });
+
+  // Initialize products based on current page
+  if (document.getElementById("featured-products-container")) {
+    initHomePageProducts();
+  }
+
+  if (document.getElementById("product-detail-container")) {
+    initProductDetailPage();
+  }
+
+  if (document.getElementById("category-products-container")) {
+    initCategoryPage();
+  }
+
+  if (document.getElementById("search-results-container")) {
+    initSearchResultsPage();
+  }
 });

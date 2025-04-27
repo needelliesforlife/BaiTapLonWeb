@@ -1,219 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Tools - FuncMed</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
     <!-- Header -->
     <header>
-        <!-- Top Bar -->
-        <div class="top-bar bg-light py-2">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 text-center text-lg-start">
-                        <span class="small text-muted"><i class="fas fa-phone-alt me-2"></i> +1 (800) 123-4567</span>
-                        <span class="small text-muted ms-3"><i class="fas fa-envelope me-2"></i> support@funcmed.com</span>
-                    </div>
-                    <div class="col-lg-6 text-center text-lg-end">
-                        <span class="small text-muted me-3"><i class="fas fa-truck me-2"></i> Free shipping on orders over $50</span>
-                        <a href="#" class="small text-muted">Track Order</a>
-                    </div>
-                </div>
+      <!-- Top Bar -->
+      <div class="top-bar bg-light py-2">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 text-center text-lg-start">
+              <span class="small text-muted"
+                ><i class="fas fa-phone-alt me-2"></i> +1 (800) 123-4567</span
+              >
+              <span class="small text-muted ms-3"
+                ><i class="fas fa-envelope me-2"></i> support@funcmed.com</span
+              >
             </div>
+            <div class="col-lg-6 text-center text-lg-end">
+              <span class="small text-muted me-3"
+                ><i class="fas fa-truck me-2"></i>Miễn phí vận chuyển cho đơn từ
+                $50</span
+              >
+              <a href="#" class="small text-muted">Theo dõi đơn hàng</a>
+            </div>
+          </div>
         </div>
-        
-        <!-- Main Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="../index.html">
-                    <h1 class="text-primary m-0">FuncMed</h1>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
+      </div>
+
+      <!-- Main Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">
+            <h1 class="text-primary m-0">FuncMed</h1>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="search-container mx-auto">
+              <form class="d-flex">
+                <input
+                  class="form-control search-input"
+                  type="search"
+                  placeholder="Tìm sản phẩm..."
+                  aria-label="Search"
+                />
+                <button class="btn btn-primary" type="submit">
+                  <i class="fas fa-search"></i>
                 </button>
-                
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <div class="search-container mx-auto">
-                        <form class="d-flex">
-                            <input class="form-control search-input" type="search" placeholder="Search for products..." aria-label="Search">
-                            <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                    
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.html">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                Categories
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="category.html?category=vitamins">Vitamins & Minerals</a></li>
-                                <li><a class="dropdown-item" href="category.html?category=probiotics">Probiotics</a></li>
-                                <li><a class="dropdown-item" href="category.html?category=herbs">Herbal Supplements</a></li>
-                                <li><a class="dropdown-item" href="category.html?category=oils">Essential Oils</a></li>
-                                <li><a class="dropdown-item" href="category.html?category=proteins">Protein Supplements</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html" id="loginLink">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="account.html" id="accountLink" style="display: none;">Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link cart-icon" href="cart.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="badge rounded-pill bg-danger cart-badge" id="cartCount">0</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+              </form>
             </div>
-        </nav>
+
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  Categories
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="category.html?category=vitamins"
+                      >Vitamins & Khoáng chất</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="category.html?category=probiotics"
+                      >Men Vi Sinh</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="category.html?category=herbs"
+                      >Thảo Dược</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="category.html?category=oils"
+                      >Tinh Dầu</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="category.html?category=proteins"
+                      >Bổ Xung Protein</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Liên hệ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html" id="loginLink"
+                  >Đăng nhập</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="account.html"
+                  id="accountLink"
+                  style="display: none"
+                  >Tài Khoản</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link cart-icon" href="cart.html">
+                  <i class="fas fa-shopping-cart"></i>
+                  <span
+                    class="badge rounded-pill bg-danger cart-badge"
+                    id="cartCount"
+                    >0</span
+                  >
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <!-- Admin Tools -->
     <section class="py-5">
-        <div class="container">
-            <h2 class="section-title mb-4">Admin Tools</h2>
-            
-            <div class="row">
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="card-title mb-0">Product Image Updater</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Update all product images with custom colors. This will change all placeholder images in the store.</p>
-                            
-                            <form id="imageUpdateForm" class="mt-4">
-                                <div class="mb-3">
-                                    <label for="backgroundColor" class="form-label">Background Color</label>
-                                    <input type="color" class="form-control form-control-color" id="backgroundColor" value="#00b6aa" title="Choose background color">
-                                    <small class="text-muted">Default: #00b6aa (Primary teal)</small>
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="textColor" class="form-label">Text Color</label>
-                                    <input type="color" class="form-control form-control-color" id="textColor" value="#ffffff" title="Choose text color">
-                                    <small class="text-muted">Default: #ffffff (White)</small>
-                                </div>
-                                
-                                <button type="submit" class="btn btn-primary">Update All Product Images</button>
-                            </form>
-                            
-                            <div class="alert alert-success mt-3" id="successAlert" style="display: none;">
-                                Product images updated successfully! <a href="../index.html">Go to homepage</a> to see the changes.
-                            </div>
-                        </div>
-                    </div>
+      <div class="container">
+        <h2 class="section-title mb-4">Admin Tools</h2>
+
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="card h-100">
+              <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">Cập nhật hình ảnh sản phẩm</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Cập nhật tất cả hình ảnh sản phẩm với màu sắc tùy chỉnh. Điều
+                  này sẽ thay đổi tất cả các hình ảnh trong cửa hàng.
+                </p>
+
+                <form id="imageUpdateForm" class="mt-4">
+                  <div class="mb-3">
+                    <label for="backgroundColor" class="form-label"
+                      >Màu nền</label
+                    >
+                    <input
+                      type="color"
+                      class="form-control form-control-color"
+                      id="backgroundColor"
+                      value="#00b6aa"
+                      title="Choose background color"
+                    />
+                    <small class="text-muted"
+                      >Default: #00b6aa (Primary teal)</small
+                    >
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="textColor" class="form-label">Text Color</label>
+                    <input
+                      type="color"
+                      class="form-control form-control-color"
+                      id="textColor"
+                      value="#ffffff"
+                      title="Choose text color"
+                    />
+                    <small class="text-muted">Default: #ffffff (White)</small>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">
+                    Cập nhật tất cả hình ảnh sản phẩm
+                  </button>
+                </form>
+
+                <div
+                  class="alert alert-success mt-3"
+                  id="successAlert"
+                  style="display: none"
+                >
+                  Cập nhật hình ảnh sản phẩm thành công
+                  <a href="../index.html">Trở về trang chủ</a> để xem các thay
+                  đổi.
                 </div>
-                
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="card-title mb-0">Image Preview</h5>
-                        </div>
-                        <div class="card-body text-center">
-                            <p class="card-text mb-3">Preview of how your product images will look:</p>
-                            
-                            <div class="preview-container border p-3 mb-3">
-                                <img id="previewImage" src="https://placehold.co/300x300/00b6aa/white?text=Product+Preview" class="img-fluid" alt="Preview Image">
-                            </div>
-                            
-                            <p class="text-muted small">This is a sample preview. Actual product images will include the product name.</p>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-            
-            <div class="row mt-4">
-                <div class="col-12">
-                    <div class="alert alert-info">
-                        <i class="fas fa-info-circle me-2"></i> Note: This page is for demonstration purposes. In a real production environment, admin tools would be protected by authentication.
-                    </div>
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <div class="card h-100">
+              <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">Xem trước hình ảnh</h5>
+              </div>
+              <div class="card-body text-center">
+                <p class="card-text mb-3">
+                  Xem trước cách hình ảnh sản phẩm hiển thị:
+                </p>
+
+                <div class="preview-container border p-3 mb-3">
+                  <img
+                    id="previewImage"
+                    src="https://placehold.co/300x300/00b6aa/white?text=Product+Preview"
+                    class="img-fluid"
+                    alt="Preview Image"
+                  />
                 </div>
+
+                <p class="text-muted small">
+                  This is a sample preview. Actual product images will include
+                  the product name.
+                </p>
+              </div>
             </div>
+          </div>
         </div>
+
+        <div class="row mt-4">
+          <div class="col-12">
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle me-2"></i> Note: This page is for
+              demonstration purposes. In a real production environment, admin
+              tools would be protected by authentication.
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <h5>FuncMed</h5>
-                    <p>Your trusted source for premium functional medicine supplements and natural health products.</p>
-                    <div class="social-icons">
-                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="../index.html" class="text-white">Home</a></li>
-                        <li><a href="../index.html#featured-products" class="text-white">Products</a></li>
-                        <li><a href="../index.html#about-us" class="text-white">About Us</a></li>
-                        <li><a href="#" class="text-white">Blog</a></li>
-                        <li><a href="#" class="text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5>Categories</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="category.html?category=vitamins" class="text-white">Vitamins & Minerals</a></li>
-                        <li><a href="category.html?category=probiotics" class="text-white">Probiotics</a></li>
-                        <li><a href="category.html?category=herbs" class="text-white">Herbal Supplements</a></li>
-                        <li><a href="category.html?category=oils" class="text-white">Essential Oils</a></li>
-                        <li><a href="category.html?category=proteins" class="text-white">Protein Supplements</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5>Contact Us</h5>
-                    <address>
-                        <p><i class="fas fa-map-marker-alt me-2"></i> 123 Health Street, Wellness City</p>
-                        <p><i class="fas fa-phone-alt me-2"></i> +1 (800) 123-4567</p>
-                        <p><i class="fas fa-envelope me-2"></i> support@funcmed.com</p>
-                    </address>
-                </div>
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <h5>FuncMed</h5>
+            <p>
+              Your trusted source for premium functional medicine supplements
+              and natural health products.
+            </p>
+            <div class="social-icons">
+              <a href="#" class="text-white me-2"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="text-white me-2"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-white me-2"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
             </div>
-            <hr class="mt-4 mb-4">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2023 FuncMed. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="mb-0">
-                        <a href="#" class="text-white me-3">Privacy Policy</a>
-                        <a href="#" class="text-white me-3">Terms & Conditions</a>
-                        <a href="#" class="text-white">FAQ</a>
-                    </p>
-                </div>
-            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled footer-links">
+              <li><a href="../index.html" class="text-white">Home</a></li>
+              <li>
+                <a href="../index.html#featured-products" class="text-white"
+                  >Products</a
+                >
+              </li>
+              <li>
+                <a href="../index.html#about-us" class="text-white">About Us</a>
+              </li>
+              <li><a href="#" class="text-white">Blog</a></li>
+              <li><a href="#" class="text-white">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5>Categories</h5>
+            <ul class="list-unstyled footer-links">
+              <li>
+                <a href="category.html?category=vitamins" class="text-white"
+                  >Vitamins & Minerals</a
+                >
+              </li>
+              <li>
+                <a href="category.html?category=probiotics" class="text-white"
+                  >Probiotics</a
+                >
+              </li>
+              <li>
+                <a href="category.html?category=herbs" class="text-white"
+                  >Herbal Supplements</a
+                >
+              </li>
+              <li>
+                <a href="category.html?category=oils" class="text-white"
+                  >Essential Oils</a
+                >
+              </li>
+              <li>
+                <a href="category.html?category=proteins" class="text-white"
+                  >Protein Supplements</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5>Contact Us</h5>
+            <address>
+              <p>
+                <i class="fas fa-map-marker-alt me-2"></i> 123 Health Street,
+                Wellness City
+              </p>
+              <p><i class="fas fa-phone-alt me-2"></i> +1 (800) 123-4567</p>
+              <p><i class="fas fa-envelope me-2"></i> support@funcmed.com</p>
+            </address>
+          </div>
         </div>
+        <hr class="mt-4 mb-4" />
+        <div class="row">
+          <div class="col-md-6">
+            <p class="mb-0">&copy; 2023 FuncMed. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p class="mb-0">
+              <a href="#" class="text-white me-3">Privacy Policy</a>
+              <a href="#" class="text-white me-3">Terms & Conditions</a>
+              <a href="#" class="text-white">FAQ</a>
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+    <a href="#" class="back-to-top" id="backToTop"
+      ><i class="fas fa-arrow-up"></i
+    ></a>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -223,50 +371,51 @@
     <script src="../js/cart.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/main.js"></script>
-    
+
     <script>
-        // Update cart count when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCartCount();
-            updateAuthUI();
-            
-            // Initialize color picker previews
-            const backgroundColorPicker = document.getElementById('backgroundColor');
-            const textColorPicker = document.getElementById('textColor');
-            const previewImage = document.getElementById('previewImage');
-            
-            // Update preview when colors change
-            function updatePreview() {
-                const bgColor = backgroundColorPicker.value.replace('#', '');
-                const txtColor = textColorPicker.value.replace('#', '');
-                previewImage.src = `https://placehold.co/300x300/${bgColor}/${txtColor}?text=Product+Preview`;
-            }
-            
-            backgroundColorPicker.addEventListener('input', updatePreview);
-            textColorPicker.addEventListener('input', updatePreview);
-            
-            // Handle form submission
-            const imageUpdateForm = document.getElementById('imageUpdateForm');
-            const successAlert = document.getElementById('successAlert');
-            
-            imageUpdateForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                const bgColor = backgroundColorPicker.value;
-                const txtColor = textColorPicker.value;
-                
-                // Call the updateProductImages function from productData.js
-                updateProductImages(bgColor, txtColor);
-                
-                // Show success message
-                successAlert.style.display = 'block';
-                
-                // Hide success message after 5 seconds
-                setTimeout(function() {
-                    successAlert.style.display = 'none';
-                }, 5000);
-            });
+      // Update cart count when page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        updateCartCount();
+        updateAuthUI();
+
+        // Initialize color picker previews
+        const backgroundColorPicker =
+          document.getElementById("backgroundColor");
+        const textColorPicker = document.getElementById("textColor");
+        const previewImage = document.getElementById("previewImage");
+
+        // Update preview when colors change
+        function updatePreview() {
+          const bgColor = backgroundColorPicker.value.replace("#", "");
+          const txtColor = textColorPicker.value.replace("#", "");
+          previewImage.src = `https://placehold.co/300x300/${bgColor}/${txtColor}?text=Product+Preview`;
+        }
+
+        backgroundColorPicker.addEventListener("input", updatePreview);
+        textColorPicker.addEventListener("input", updatePreview);
+
+        // Handle form submission
+        const imageUpdateForm = document.getElementById("imageUpdateForm");
+        const successAlert = document.getElementById("successAlert");
+
+        imageUpdateForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const bgColor = backgroundColorPicker.value;
+          const txtColor = textColorPicker.value;
+
+          // Call the updateProductImages function from productData.js
+          updateProductImages(bgColor, txtColor);
+
+          // Show success message
+          successAlert.style.display = "block";
+
+          // Hide success message after 5 seconds
+          setTimeout(function () {
+            successAlert.style.display = "none";
+          }, 5000);
         });
+      });
     </script>
-</body>
+  </body>
 </html>

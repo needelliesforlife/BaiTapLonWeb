@@ -1,235 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - FuncMed</title>
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
     <!-- Header -->
     <header>
-        <!-- Top Bar -->
-        <div class="top-bar bg-primary text-white py-2">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <span><i class="fas fa-phone-alt me-2"></i> Hotline: 1800-1234</span>
-                        <span class="ms-3"><i class="fas fa-envelope me-2"></i> Email: support@funcmed.com</span>
-                    </div>
-                    <div class="col-md-6 text-end">
-                        <div class="top-nav">
-                            <a href="login.html" class="text-white me-3"><i class="fas fa-user me-1"></i> Log In</a>
-                            <a href="register.html" class="text-white me-3"><i class="fas fa-user-plus me-1"></i> Register</a>
-                            <a href="account.html" class="text-white me-3 d-none" id="account-link"><i class="fas fa-user-circle me-1"></i> My Account</a>
-                            <a href="#" class="text-white d-none" id="logout-btn"><i class="fas fa-sign-out-alt me-1"></i> Logout</a>
-                        </div>
-                    </div>
-                </div>
+      <!-- Top Bar -->
+      <div class="top-bar bg-primary text-white py-2">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <span
+                ><i class="fas fa-phone-alt me-2"></i> Hotline: 1800-1234</span
+              >
+              <span class="ms-3"
+                ><i class="fas fa-envelope me-2"></i> Email:
+                support@funcmed.com</span
+              >
             </div>
+            <div class="col-md-6 text-end">
+              <div class="top-nav">
+                <a href="login.html" class="text-white me-3"
+                  ><i class="fas fa-user me-1"></i> Login</a
+                >
+                <a href="register.html" class="text-white me-3"
+                  ><i class="fas fa-user-plus me-1"></i> Register</a
+                >
+                <a
+                  href="account.html"
+                  class="text-white me-3 d-none"
+                  id="account-link"
+                  ><i class="fas fa-user-circle me-1"></i> My Account</a
+                >
+                <a href="#" class="text-white d-none" id="logout-btn"
+                  ><i class="fas fa-sign-out-alt me-1"></i> Logout</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Main Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="../index.html">
-                    <h1 class="m-0 text-primary">FuncMed</h1>
+      <!-- Main Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">
+            <h1 class="m-0 text-primary">FuncMed</h1>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Search Form -->
+          <div class="search-container mx-auto d-none d-lg-block">
+            <form class="d-flex">
+              <input
+                class="form-control me-2 search-input"
+                type="search"
+                placeholder="Search products..."
+                id="search-input"
+              />
+              <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Cart Icon -->
+          <div class="cart-icon ms-auto me-2">
+            <a href="cart.html" class="text-dark position-relative">
+              <i class="fas fa-shopping-cart fa-lg"></i>
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                id="cart-count"
+                >0</span
+              >
+            </a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  Products
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Search Form -->
-                <div class="search-container mx-auto d-none d-lg-block">
-                    <form class="d-flex">
-                        <input class="form-control me-2 search-input" type="search" placeholder="Search for functional medicine..." id="search-input">
-                        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
-                </div>
-
-                <!-- Cart Icon -->
-                <div class="cart-icon ms-auto me-2">
-                    <a href="cart.html" class="text-dark position-relative">
-                        <i class="fas fa-shopping-cart fa-lg"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.html">Home</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                Categories
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="category.html?category=vitamins">Vitamins & Minerals</a></li>
-                                <li><a class="dropdown-item" href="category.html?category=probiotics">Probiotics</a></li>
-                                <li><a class="dropdown-item" href="category.html?category=herbs">Herbal Supplements</a></li>
-                                <li><a class="dropdown-item" href="category.html?category=oils">Essential Oils</a></li>
-                                <li><a class="dropdown-item" href="category.html?category=proteins">Protein Supplements</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.html#bestsellers">Best Sellers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.html#new-arrivals">New Arrivals</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.html#about-us">About Us</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="category.html?category=vitamins"
+                      >Vitamins & Minerals</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="category.html?category=probiotics"
+                      >Probiotics</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="category.html?category=herbs"
+                      >Herbs</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="category.html?category=oils"
+                      >Essential Oils</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="category.html?category=proteins"
+                      >Protein Supplements</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html#bestsellers"
+                  >Best Sellers</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html#new-arrivals"
+                  >New Arrivals</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../index.html#about-us">About Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
 
     <!-- Mobile Search (shown only on small screens) -->
     <div class="container d-block d-lg-none mt-3 mb-3">
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search for functional medicine..." id="mobile-search-input">
-            <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
-        </form>
+      <form class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search for functional medicine..."
+          id="mobile-search-input"
+        />
+        <button class="btn btn-primary" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
     </div>
 
     <!-- Breadcrumb -->
     <div class="bg-light py-2">
-        <div class="container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Login</li>
-                </ol>
-            </nav>
-        </div>
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Login</li>
+          </ol>
+        </nav>
+      </div>
     </div>
 
     <!-- Login Section -->
     <section class="py-5">
-        <div class="container">
-            <div class="auth-container">
-                <h2 class="auth-title">Login to Your Account</h2>
-                
-                <form id="login-form" class="auth-form needs-validation" novalidate>
-                    <div class="mb-3">
-                        <label for="login-email" class="form-label">Email Address*</label>
-                        <div class="input-group">
-                            <span class="input-group-text">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                            <input type="email" class="form-control" id="login-email" placeholder="your.email@example.com" required>
-                            <div class="invalid-feedback">
-                                Please provide a valid email address.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="login-password" class="form-label">Password*</label>
-                        <div class="input-group">
-                            <span class="input-group-text">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                            <input type="password" class="form-control" id="login-password" placeholder="Your password" required>
-                            <button class="btn btn-outline-secondary toggle-password" type="button">
-                                <i class="far fa-eye"></i>
-                            </button>
-                            <div class="invalid-feedback">
-                                Please provide your password.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="remember-me">
-                        <label class="form-check-label" for="remember-me">Remember me</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-submit">Login</button>
-                </form>
-                
-                <div class="auth-footer">
-                    <p>Don't have an account? <a href="register.html" class="text-primary">Register here</a></p>
-                    <p><a href="#" class="text-primary">Forgot your password?</a></p>
+      <div class="container">
+        <div class="auth-container">
+          <h2 class="auth-title">Login to your account</h2>
+
+          <form id="login-form" class="auth-form needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="login-email" class="form-label">Email Address*</label>
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="login-email"
+                  placeholder="your.email@example.com"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Please enter your email address.
                 </div>
-                
-                <div class="text-center mt-4">
-                    <p class="text-muted">Or login with</p>
-                    <div class="social-login">
-                        <button class="btn btn-outline-primary me-2">
-                            <i class="fab fa-facebook-f me-2"></i> Facebook
-                        </button>
-                        <button class="btn btn-outline-danger">
-                            <i class="fab fa-google me-2"></i> Google
-                        </button>
-                    </div>
-                </div>
+              </div>
             </div>
+            <div class="mb-3">
+              <label for="login-password" class="form-label">Password*</label>
+              <div class="input-group">
+                <span class="input-group-text">
+                  <i class="fas fa-lock"></i>
+                </span>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="login-password"
+                  placeholder="Your password"
+                  required
+                />
+                <button
+                  class="btn btn-outline-secondary toggle-password"
+                  type="button"
+                >
+                  <i class="far fa-eye"></i>
+                </button>
+                <div class="invalid-feedback">Please enter your password.</div>
+              </div>
+            </div>
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="remember-me"
+              />
+              <label class="form-check-label" for="remember-me"
+                >Remember me</label
+              >
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit">
+              Login
+            </button>
+          </form>
+
+          <div class="auth-footer">
+            <p>
+              Don't have an account?
+              <a href="register.html" class="text-primary">Register here</a>
+            </p>
+            <p><a href="#" class="text-primary">Forgot password?</a></p>
+          </div>
+
+          <div class="text-center mt-4">
+            <p class="text-muted">Or login with</p>
+            <div class="social-login">
+              <button class="btn btn-outline-primary me-2">
+                <i class="fab fa-facebook-f me-2"></i> Facebook
+              </button>
+              <button class="btn btn-outline-danger">
+                <i class="fab fa-google me-2"></i> Google
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <h5>FuncMed</h5>
-                    <p>Your trusted source for premium functional medicine supplements and natural health products.</p>
-                    <div class="social-icons">
-                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="../index.html" class="text-white">Home</a></li>
-                        <li><a href="../index.html#featured-products" class="text-white">Products</a></li>
-                        <li><a href="../index.html#about-us" class="text-white">About Us</a></li>
-                        <li><a href="#" class="text-white">Blog</a></li>
-                        <li><a href="#" class="text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5>Categories</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="category.html?category=vitamins" class="text-white">Vitamins & Minerals</a></li>
-                        <li><a href="category.html?category=probiotics" class="text-white">Probiotics</a></li>
-                        <li><a href="category.html?category=herbs" class="text-white">Herbal Supplements</a></li>
-                        <li><a href="category.html?category=oils" class="text-white">Essential Oils</a></li>
-                        <li><a href="category.html?category=proteins" class="text-white">Protein Supplements</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h5>Contact Us</h5>
-                    <address>
-                        <p><i class="fas fa-map-marker-alt me-2"></i> 123 Health Street, Wellness City</p>
-                        <p><i class="fas fa-phone-alt me-2"></i> +1 (800) 123-4567</p>
-                        <p><i class="fas fa-envelope me-2"></i> support@funcmed.com</p>
-                    </address>
-                </div>
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <h5>FuncMed</h5>
+            <p>
+              Your trusted source for premium functional medicine supplements
+              and natural health products.
+            </p>
+            <div class="social-icons">
+              <a href="#" class="text-white me-2"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="text-white me-2"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-white me-2"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
             </div>
-            <hr class="mt-4 mb-4">
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2023 FuncMed. All rights reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <p class="mb-0">
-                        <a href="#" class="text-white me-3">Privacy Policy</a>
-                        <a href="#" class="text-white me-3">Terms & Conditions</a>
-                        <a href="#" class="text-white">FAQ</a>
-                    </p>
-                </div>
-            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled footer-links">
+              <li><a href="../index.html" class="text-white">Home</a></li>
+              <li>
+                <a href="../index.html#featured-products" class="text-white"
+                  >Products</a
+                >
+              </li>
+              <li>
+                <a href="../index.html#about-us" class="text-white">About Us</a>
+              </li>
+              <li><a href="#" class="text-white">Blog</a></li>
+              <li><a href="#" class="text-white">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5>Categories</h5>
+            <ul class="list-unstyled footer-links">
+              <li>
+                <a href="category.html?category=vitamins" class="text-white"
+                  >Vitamins & Minerals</a
+                >
+              </li>
+              <li>
+                <a href="category.html?category=probiotics" class="text-white"
+                  >Probiotics</a
+                >
+              </li>
+              <li>
+                <a href="category.html?category=herbs" class="text-white"
+                  >Herbs</a
+                >
+              </li>
+              <li>
+                <a href="category.html?category=oils" class="text-white"
+                  >Essential Oils</a
+                >
+              </li>
+              <li>
+                <a href="category.html?category=proteins" class="text-white"
+                  >Protein Supplements</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5>Contact</h5>
+            <address>
+              <p>
+                <i class="fas fa-map-marker-alt me-2"></i> 123 Health Street,
+                Wellness City
+              </p>
+              <p><i class="fas fa-phone-alt me-2"></i> +1 (800) 123-4567</p>
+              <p><i class="fas fa-envelope me-2"></i> support@funcmed.com</p>
+            </address>
+          </div>
         </div>
+        <hr class="mt-4 mb-4" />
+        <div class="row">
+          <div class="col-md-6">
+            <p class="mb-0">&copy; 2023 FuncMed. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p class="mb-0">
+              <a href="#" class="text-white me-3">Privacy Policy</a>
+              <a href="#" class="text-white me-3">Terms & Conditions</a>
+              <a href="#" class="text-white">FAQ</a>
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
 
     <!-- Bootstrap Bundle with Popper -->
@@ -240,34 +383,34 @@
     <script src="../js/cart.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/main.js"></script>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Toggle password visibility
-            const toggleButton = document.querySelector('.toggle-password');
-            if (toggleButton) {
-                toggleButton.addEventListener('click', function() {
-                    const passwordInput = document.getElementById('login-password');
-                    const icon = this.querySelector('i');
-                    
-                    if (passwordInput.type === 'password') {
-                        passwordInput.type = 'text';
-                        icon.classList.remove('fa-eye');
-                        icon.classList.add('fa-eye-slash');
-                    } else {
-                        passwordInput.type = 'password';
-                        icon.classList.remove('fa-eye-slash');
-                        icon.classList.add('fa-eye');
-                    }
-                });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Toggle password visibility
+        const toggleButton = document.querySelector(".toggle-password");
+        if (toggleButton) {
+          toggleButton.addEventListener("click", function () {
+            const passwordInput = document.getElementById("login-password");
+            const icon = this.querySelector("i");
+
+            if (passwordInput.type === "password") {
+              passwordInput.type = "text";
+              icon.classList.remove("fa-eye");
+              icon.classList.add("fa-eye-slash");
+            } else {
+              passwordInput.type = "password";
+              icon.classList.remove("fa-eye-slash");
+              icon.classList.add("fa-eye");
             }
-            
-            // Check if user is already logged in
-            const currentUser = getCurrentUser();
-            if (currentUser) {
-                window.location.href = 'account.html';
-            }
-        });
+          });
+        }
+
+        // Check if user is already logged in
+        const currentUser = getCurrentUser();
+        if (currentUser) {
+          window.location.href = "account.html";
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
